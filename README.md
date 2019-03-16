@@ -14,14 +14,14 @@ Well that's what I wanted to achieve with this project, I figured there are 3 cr
 ## So ... what's going on (should read this before the results)
 A little explaintion of each criteria for the following results
 
-1. **Calculation** - I used the `Madhava–Leibniz` series [the formula](https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/formula.jpg)
-everyone should calculate the series up to the precision of six digits (0.000001),
-and measure the time it takes to calc it
+1. **Calculation** - I used the `Madhava–Leibniz` series everyone should calculate the series up to the precision of six digits (0.000001), and measure the time it takes to calc it.
+<img src="https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/formula.jpg" alt="formula" width="200px"/>
+
 2. **File System** - write 1,000 files in a directory with no contect in them, after that write 1,000 line inside another file and measure the time each operations took
 3. **HTTP** - create a http server that return the id you send it, once using the GET method and another using the POST 100 times each and measure the time took the server to respond to each request. Obviously I needed a client for that and I used a client in the same lang and FW for that.
 
 ### **If you think you can do better please read the pull request instructions below**
-* All tests were preformed on the same PC running windows 10 ![spec](https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/homepc.png "more")
+* All tests were preformed on the same PC running windows 10 ![spec](https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/homepc.png "home spec")
 
 # CALCULATION (cpu intensive)
 |FW && Language | Measure | Best Result| Comments
