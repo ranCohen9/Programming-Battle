@@ -22,7 +22,7 @@ A little explaintion of each criteria for the following results
 
 ### **If you think you can do better please read the pull request instructions below**
 * All tests were preformed on the same PC running windows 10.
-<img src="https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/homepc.png" alt="home spec" width="300px"/>
+<img src="https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/homepc.png" alt="home spec" width="350px"/>
 
 # CALCULATION (cpu intensive)
 |FW && Language | Measure | Best Result| Comments
