@@ -14,7 +14,7 @@ Well that's what I wanted to achieve with this project, I figured there are 3 cr
 ## So ... what's going on (should read this before the results)
 A little explaintion of each criteria for the following results
 
-1. **Calculation** - I used the `Madhava–Leibniz` series [the formula](formula.jpg)
+1. **Calculation** - I used the `Madhava–Leibniz` series [the formula](https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/formula.jpg)
 everyone should calculate the series up to the precision of six digits (0.000001),
 and measure the time it takes to calc it
 2. **File System** - write 1,000 files in a directory with no contect in them, after that write 1,000 line inside another file and measure the time each operations took
