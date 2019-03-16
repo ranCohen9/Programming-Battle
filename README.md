@@ -1,4 +1,4 @@
-![logo]("https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/logo.jpg")
+![logo](https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/logo.jpg | width=100)
 
 
 # The Programming Battle
