@@ -1,3 +1,4 @@
+<img src="https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/logo.jpg" alt="logo" width="200px"/>
 # The Programming Battle
 Welcome to the programming battle between languages and runtimes. (results are at the end but you should read to understand them)
 
