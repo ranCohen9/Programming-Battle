@@ -21,7 +21,7 @@ and measure the time it takes to calc it
 3. **HTTP** - create a http server that return the id you send it, once using the GET method and another using the POST 100 times each and measure the time took the server to respond to each request. Obviously I needed a client for that and I used a client in the same lang and FW for that.
 
 ### **If you think you can do better please read the pull request instructions below**
-* All tests were preformed on the same PC running windows 10 (https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/homepc.png)
+* All tests were preformed on the same PC running windows 10 ![spec](https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/homepc.png "more")
 
 # CALCULATION (cpu intensive)
 |FW && Language | Measure | Best Result| Comments
