@@ -26,7 +26,16 @@ public class Worker
         }
     }
 
-    public async Task GetMany(){
+    public async Task AvgGetMany(){
+        double sum=0;
+        for (int i = 0; i < 100; i++)
+        {
+            sum += await this.GetMany();
+        }
+        System.Console.WriteLine($"finished the avg get loop {sum / 100}");
+    }
+
+    public async Task<double> GetMany(){
         double sum=0;
         int i=0;
         for (; i < 100; i++)
@@ -34,7 +43,8 @@ public class Worker
             double result=await this.GetOnce(i);
             sum+=result;
         }
-        System.Console.WriteLine($"finished GET loop avg {sum/100} | {i}");
+        //System.Console.WriteLine($"finished GET loop avg {sum/100} | {i}");
+        return sum / 100;
     }
 
     public async Task<double> PostOnce(int id){

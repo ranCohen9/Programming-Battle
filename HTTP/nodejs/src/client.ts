@@ -71,10 +71,19 @@ class Client {
             sum += val;
         }
         // console.log(`this is avg ${sum / 100}`);
-        console.log(`finished GET loop index is ${index}`);
-        setTimeout(() => {//make sure all the iterations will finish
-            console.log(`this is GET avg ${sum / 100}`);
-        }, 2000);
+        // console.log(`finished GET loop index is ${index}`);
+        // setTimeout(() => {//make sure all the iterations will finish
+        //     console.log(`this is GET avg ${sum / 100}`);
+        // }, 1000);
+        return sum / 100;
+    }
+
+    async avgGetMany() {
+        let sum = 0;
+        for (let i = 0; i < 100; i++){
+            sum += await this.getMany();
+        }
+        console.log(`finished get loop avg ${sum / 100}`);
     }
 
     postOnce(id: number):Promise<number> {
@@ -120,5 +129,6 @@ class Client {
     }
 }
 let client = new Client();
-client.getMany();
+//client.getMany();
+client.avgGetMany();
 client.postMany();

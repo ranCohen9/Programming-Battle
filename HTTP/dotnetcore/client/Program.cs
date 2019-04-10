@@ -8,9 +8,10 @@ namespace client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!2");
+            Console.WriteLine("running http battle");
             Worker t=new Worker();
-            t.GetMany().Wait();
+            //t.GetMany().Wait();
+            t.AvgGetMany().Wait();
             t.PostMany().Wait();
             System.Console.WriteLine("client exited");
         }
