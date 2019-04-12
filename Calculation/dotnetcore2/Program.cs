@@ -7,7 +7,8 @@ namespace ShowDown
         {
             LeibnizFormula liebinz=new LeibnizFormula();
             //Console.WriteLine(liebinz.LeibnizOnce(0));
-            liebinz.SeriesCalculation();
+            //liebinz.SeriesCalculation();
+            liebinz.AvgSeriesCalculation();
         }
     }
 }
