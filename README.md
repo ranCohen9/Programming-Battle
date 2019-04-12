@@ -15,35 +15,20 @@ Well that's what I wanted to achieve with this project, I figured there are 3 cr
 A little explaintion of each criteria for the following results
 
 1. **Calculation** - I used the `Madhava–Leibniz` series everyone should calculate the series up to the precision of six digits (0.000001), and measure the time it takes to calc it.
-<img src="https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/formula.jpg" alt="formula" width="200px"/>
+<img src="Assets/formula.jpg" alt="formula" width="200px"/>
 
 2. **File System** - write 1,000 files in a directory with no contect in them, after that write 1,000 line inside another file and measure the time each operations took
 3. **HTTP** - create a http server that return the id you send it, once using the GET method and another using the POST 100 times each and measure the time took the server to respond to each request. Obviously I needed a client for that and I used a client in the same lang and FW for that.
 
 ### **If you think you can do better please read the pull request instructions below**
-* All tests were preformed on the same PC running windows 10.
-<img src="https://github.com/piniSolomon/Programming-Battle/blob/master/Assets/homepc.png" alt="home spec" width="350px"/>
 
-# CALCULATION (cpu intensive)
-|FW && Language | Measure | Best Result| Comments
-|----|-|-|-|
-|nodejs v10.15.1 - javascript| 15ms|-| the first time took longer
-|.Net Core v2.2 - C# | 5.5ms | X | no suprise for me node js is weak on memory ops
-| GO v1.12 | 22ms |-| a real big suprise for me (this lang should preform as c/c++)
+# THE RESULTS 
+## All tests should preform on the same machine and can be pulished below
 
-# File System (io intensive)
-|FW && Language | Create Files | Write To File | Best Result| Comments
-|----|-|-|-|-|
-|nodejs v10.15.1 - javascript| 9ms | 13ms | X | no suprise this what is famous for
-|.Net Core v2.2 - C# | 133ms | 224ms |- |since run on the same core as nodejs (ported to c# I thought the numbers will be much closer) **writing in parallel did not worked**
-| GO v1.12 | 321ms |3500ms|- | DISAPPOINTING in some cases not all files were created (althought could be my fault) 
+[My PC  ](Results/pini-pc.md)
 
-# HTTP (network intensive)
-|FW && Language | GET | POST | Best Result| Comments
-|----|-|-|-|-|
-|nodejs v10.15.1 - javascript| 1.59ms | 1.41ms | X | no suprise this what is famous for
-|.Net Core v2.2 - C# | 3.31ms | 2.54ms |- | need to see if the result are linear or not
-| GO v1.12 | ms |ms|- | 
+[My laptop](results/pini-hp-elite840.md)
+
 
 * ### Remember! this result when using the langauge and FW 'as is' and that the intension of this project
 * To run this test on your pc you should install all relvant FW and build the projects, since nodejs and .net core does not compile to executable files you must do so and I can't provide and binaries for you.
