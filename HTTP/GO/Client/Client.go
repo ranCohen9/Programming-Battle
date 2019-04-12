@@ -8,8 +8,8 @@ import (
 
 
 func main(){
-	//getMany();
-	avgGetMany();
+	getMany();
+	//avgGetMany();
 }
 
 func avgGetMany(){
@@ -27,7 +27,7 @@ func getMany()(float64){
 		sum+=getOnce(i);
 	}
 	//log.Println(sum);
-	//log.Printf("finished get loop avg %fms", sum.Seconds()*1000/float64(i));
+	log.Printf("finished get loop avg %fms", sum.Seconds()*1000/float64(i));
 	return sum.Seconds()*1000/float64(i);
 }
 
