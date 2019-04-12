@@ -12,8 +12,8 @@ namespace client
             Worker t=new Worker();
             //t.GetMany().Wait();
             t.AvgGetMany().Wait();
-            t.PostMany().Wait();
-            System.Console.WriteLine("client exited");
+            t.AvgPostMany().Wait();
+            System.Console.WriteLine("client finished");
         }
     }
 }

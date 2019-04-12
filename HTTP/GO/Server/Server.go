@@ -25,9 +25,9 @@ func doGetMethod(w http.ResponseWriter, r *http.Request){
 
 func doPostMethod(w http.ResponseWriter, r *http.Request){
 	//fmt.Println("go post operation");
-	//fmt.Println(string(r.Body));
 	decoder:=json.NewDecoder(r.Body);
 	var obj json.RawMessage;
 	decoder.Decode(&obj);
+	//fmt.Println(string(obj));
 	json.NewEncoder(w).Encode(obj);
 }

@@ -7,7 +7,7 @@ Well that's what I wanted to achieve with this project, I figured there are 3 cr
 
 1. **Calculation** - should simulate a service who has intensive memory operations as calculating a line of sight or the orbit of one satellite
 2. **File System** - some of us use the file system more then others but creating files and reading files is somewhat important task that I thought should be tested
-3. **HTTP** - I used HTTP client server to test the framework ability to open a socket for communication. The nice thing about HTTP is that the connection is not presistant so it lets us test the overall time it take to open a connection and close it.
+3. **HTTP** - I used HTTP client server to test the framework ability to open a socket for communication. The nice thing about HTTP is that the connection is not presistant so it lets us test the overall time it take to open a connection and close it. The test sends 100 request of GET and then POST and on top that it loops 100 of those request to get more solid Average.
 
 >The main purpose is to test the language and framework __straightforward__ and to see how it preforms out of the box with minimal tweaking
 * althought tweaking will be appreciated in a forked project. I promise to link to a project that will turn around some of the results
@@ -25,8 +25,31 @@ A little explaintion of each criteria for the following results
 # THE RESULTS 
 ## All tests should preform on the same machine and can be pulished below
 
-[My PC  ](Results/pini-pc.md)
+<img src="Assets/homepc.png" alt="home spec" width="350px"/>
 
+# CALCULATION (cpu intensive)
+|FW && Language | Measure | Best Result| Comments
+|----|-|-|-|
+|nodejs v10.15.1 - javascript   | 15ms  |-  | the first time took longer
+|.Net Core v2.2 - C#            | 5.5ms | X | no suprise for me node js is weak on memory ops
+| GO v1.12                      | 22ms  |-  | a real big suprise for me (this lang should preform as c/c++)
+
+# File System (io intensive)
+|FW && Language | Create Files | Write To File | Best Result| Comments
+|----|-|-|-|-|
+|nodejs v10.15.1 - javascript   | 9ms   | 13ms  | X | no suprise this what is famous for
+|.Net Core v2.2 - C#            | 133ms | 224ms |-  |since run on the same core as nodejs (ported to c# I thought the numbers will be much closer) **writing in parallel did not worked**
+| GO v1.12                      | 321ms |3500ms |-  | DISAPPOINTING in some cases not all files were created (althought could be my fault) 
+
+# HTTP (network intensive)
+|FW && Language | GET | POST | Best Result| Comments
+|----|-|-|-|-|
+|nodejs v10.15.1 - javascript   | 0.714ms    | 0.742ms | X    | no suprise this what is famous for
+|.Net Core v2.2 - C#            | 3.23ms    | 5.66ms |-     | COULD NOT PREFORM THE 1000 iterations server threw excetions so I did 100*100 need to see if the result are linear or not
+| GO v1.12                      | 0.66ms       |  0.71   |-     | the post testing threw errors on queue full and lack of space even after I reduced the iterations to 100*100 so this results are a little faulty. the GET part is well preformed, but combing this results with the rest got to make you think...
+
+[My PC  ](Results/pini-pc.md)
+### More Results
 [My laptop](results/pini-hp-elite840.md)
 
 

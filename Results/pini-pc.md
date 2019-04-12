@@ -17,6 +17,6 @@
 # HTTP (network intensive)
 |FW && Language | GET | POST | Best Result| Comments
 |----|-|-|-|-|
-|nodejs v10.15.1 - javascript   | 1.59ms    | 1.41ms | X    | no suprise this what is famous for
-|.Net Core v2.2 - C#            | 3.31ms    | 2.54ms |-     | need to see if the result are linear or not
-| GO v1.12                      | TBD       |  TBD   |-     | 
+|nodejs v10.15.1 - javascript   | 0.714ms    | 0.742ms | X    | no suprise this what is famous for
+|.Net Core v2.2 - C#            | 3.23ms    | 5.66ms |-     | COULD NOT PREFORM THE 1000 iterations server threw excetions so I did 100*100 need to see if the result are linear or not
+| GO v1.12                      | 0.66ms       |  0.71   |-     | the post testing threw errors on queue full and lack of space even after I reduced the iterations to 100*100 so this results are a little faulty. the GET part is well preformed, but combing this results with the rest got to make you think

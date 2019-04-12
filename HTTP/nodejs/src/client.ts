@@ -1,6 +1,8 @@
 import * as http from 'http';
 const Domain = "localhost";
 const Port = "3000";
+const avgIterations=1000;
+const manyIterations=100;
 
 interface Result {
     start: Date;
@@ -25,9 +27,71 @@ class Client {
     };
 
     getTiming = new Map<number, Result>();
-    postTiming = new Map<number,Result>();
+    postTiming = new Map<number, Result>();
     constructor() {
 
+    }
+
+    async avgGetMany() {
+        let sum = 0;
+        let i=0;
+        for (; i < avgIterations; i++) {
+            sum += await this.getMany();
+        }
+        console.log(`finished GET avg (${avgIterations}*${manyIterations}) ${sum / i}`);
+    }
+
+    async avgPostMany() {
+        let sum = 0;
+        let i=0;    
+        for (; i < avgIterations; i++) {
+            sum += await this.postMany();
+        }
+        console.log(`finished POST Avg (${avgIterations}*${manyIterations}) ${sum / i}`);
+    }
+
+    
+
+    async getMany() {
+        return new Promise<number>(async(resolve, reject) => {
+            let sum = 0;
+            let index = 0;
+            for (; index < manyIterations; index++) {
+
+                /////not using await is supriseingly slow
+                // this.getOnce(index).then(val => {
+                //     console.log(`this is val ${sum}`);
+                //     sum += val;
+                // });
+                ////the await is much better then `then`
+                let val = await this.getOnce(index);
+                // console.log(`this is val ${sum}`);
+                sum += val;
+            }
+            // console.log(`this is avg ${sum / 100}`);
+            // console.log(`finished GET loop index is ${index}`);
+             //setTimeout(() => {//make sure all the iterations will finish
+                //  console.log(`this is GET avg ${sum / 100}`);
+                 resolve(sum/index);
+             //}, 1000);
+           
+        });
+    }
+
+    async postMany() {
+        return new Promise<number>(async (resolve, reject) => {
+            let sum = 0;
+            let index = 0;
+            for (; index < manyIterations; index++) {
+                sum += await this.postOnce(index);
+            }
+            // console.log(`this is POST avg ${sum / 100}`);
+            // console.log(`current POST avg ${sum/100}`);
+            resolve(sum / index);
+            // setTimeout(() => {//make sure all the iterations will finish
+            //     //console.log(`this is POST avg ${sum / 100}`);
+            // }, 1000);
+        });
     }
 
     getOnce(id: number) {
@@ -54,57 +118,25 @@ class Client {
         });
     }
 
-    async getMany() {
-        let allGets = [];
-        let sum = 0;
-        let index=0;
-        for (; index < 100; index++) {
-
-            /////not using await is supriseingly slow
-            // this.getOnce(index).then(val => {
-            //     console.log(`this is val ${sum}`);
-            //     sum += val;
-            // });
-            ////the await is much better then `then`
-            let val = await this.getOnce(index);
-            // console.log(`this is val ${sum}`);
-            sum += val;
-        }
-        // console.log(`this is avg ${sum / 100}`);
-        // console.log(`finished GET loop index is ${index}`);
-        // setTimeout(() => {//make sure all the iterations will finish
-        //     console.log(`this is GET avg ${sum / 100}`);
-        // }, 1000);
-        return sum / 100;
-    }
-
-    async avgGetMany() {
-        let sum = 0;
-        for (let i = 0; i < 100; i++){
-            sum += await this.getMany();
-        }
-        console.log(`finished get loop avg ${sum / 100}`);
-    }
-
-    postOnce(id: number):Promise<number> {
+    postOnce(id: number): Promise<number> {
         return new Promise<number>((resolve, reject) => {
-            let result={start:new Date(), stop:new Date(), done:false};
-            this.postTiming.set(id,result);
+            let result = { start: new Date(), stop: new Date(), done: false };
+            this.postTiming.set(id, result);
             let request = http.request(this.options, response => {
-                let chuncky=0;
+                let chuncky = 0;
                 // console.log(`post status code : ${response.statusCode}`);
                 response.on("data", (chuck) => {
-                    let chunckObj=JSON.parse(chuck);
+                    let chunckObj = JSON.parse(chuck);
                     // console.log(`post chunk: ${chunckObj}`);
-                    chuncky=parseInt(chunckObj.id);
+                    chuncky = parseInt(chunckObj.id);
                 });
                 response.on("end", () => {
                     // console.log(`post the end`);
-                    let stop=new Date();
+                    let stop = new Date();
                     // console.log(chuncky);
-                    let d=this.postTiming.get(chuncky) as Result;
+                    let d = this.postTiming.get(chuncky) as Result;
                     //d.stop=stop
-                    resolve(stop.getTime()-d.start.getTime());
+                    resolve(stop.getTime() - d.start.getTime());
                 });
             });
             request.write(JSON.stringify({ 'id': id }), (error) => {
@@ -114,21 +146,11 @@ class Client {
         });
     }
 
-    async postMany() {
-        let allPosts = [];
-        let sum = 0;
-        let index=0;
-        for (; index < 100; index++) {
-            sum+=await this.postOnce(index);
-        }
-        // console.log(`this is POST avg ${sum / 100}`);
-        console.log(`finished POST loop index is ${index}`);
-        setTimeout(() => {//make sure all the iterations will finish
-            console.log(`this is POST avg ${sum / 100}`);
-        }, 2000);
-    }
+    
 }
 let client = new Client();
 //client.getMany();
-client.avgGetMany();
-client.postMany();
+//client.postMany();
+client.avgGetMany().then(value=>{
+    client.avgPostMany();
+})
