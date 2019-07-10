@@ -1,6 +1,8 @@
 #ifndef MEASURE__H
 #define MEASURE__H
 
+#include <windows.h> // QueryPerformanceFrequency, QueryPerformanceCounter
+
 #define MEASURE_START() \
     static LARGE_INTEGER nFrequency, nStartingTime, nEndingTime, nElapsedMicroseconds; \
     QueryPerformanceFrequency(&nFrequency); \

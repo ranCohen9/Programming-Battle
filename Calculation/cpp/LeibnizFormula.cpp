@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-#include <windows.h> // QueryPerformanceFrequency, QueryPerformanceCounter
 #include "Measure.h"
 
 enum
